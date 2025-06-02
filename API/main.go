@@ -1,0 +1,22 @@
+package main
+
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
+
+func main() {
+	server := gin.Default()
+	server.GET("/health", getHealth)
+	server.GET("/events", getEvents)
+	server.Run(":8080")
+}
+
+func getHealth(context *gin.Context) {
+	context.JSON(http.StatusOK, gin.H{"message": "healthy"})
+}
+
+func getEvents(context *gin.Context) {
+	context.JSON(http.StatusOK, gin.H{})
+}
